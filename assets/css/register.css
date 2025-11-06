@@ -1,0 +1,171 @@
+/* --------- ESTILO GENERAL --------- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: linear-gradient(#d1ced8, #73be7a);
+    color: #333;
+    min-height: 100vh;
+}
+
+/* --------- HEADER --------- */
+.header {
+    background: linear-gradient(90deg, #0a3d62, #3c6382);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 40px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo img {
+    width: 40px;
+    height: 40px;
+}
+
+.header nav ul {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+}
+
+.header nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+.header nav ul li a:hover {
+    color: #f5d76e;
+}
+
+/* --------- MAIN FORM --------- */
+.register-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 15px;
+    background: url("../images/mountain-bg.jpg") no-repeat center center/cover;
+}
+
+.register-card {
+    background: rgba(255, 255, 255, 0.6);
+    padding: 30px 35px;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    max-width: 480px;
+    width: 100%;
+    text-align: center;
+}
+
+.register-card h2 {
+    color: #0a3d62;
+    font-size: 1.8em;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    color: #555;
+    font-size: 0.95em;
+    margin-bottom: 25px;
+}
+
+.form-group {
+    text-align: left;
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    font-weight: 600;
+    color: #0a3d62;
+    margin-bottom: 6px;
+}
+
+input, select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #bbb;
+    border-radius: 6px;
+    transition: border-color 0.3s;
+}
+
+input:focus, select:focus {
+    border-color: #3c6382;
+    outline: none;
+}
+
+button {
+    width: 100%;
+    background: linear-gradient(90deg, #0a3d62, #3c6382);
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s, background 0.3s;
+    margin-top: 10px;
+}
+
+button:hover {
+    background: linear-gradient(90deg, #3c6382, #60a3bc);
+    transform: scale(1.02);
+}
+
+.error {
+    display: none;
+    color: #c0392b;
+    font-size: 0.85em;
+    margin-top: 4px;
+}
+
+/* --------- FOOTER --------- */
+.footer {
+    text-align: center;
+    background: #0a3d62;
+    color: white;
+    padding: 15px;
+    margin-top: 40px;
+    font-size: 0.9em;
+}
+
+.mensaje {
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.mensaje.error {
+    background-color: #ffe5e5;
+    border: 1px solid #ff4d4d;
+    color: #b30000;
+}
+
+.mensaje.exito {
+    background-color: #e3ffe8;
+    border: 1px solid #6fcf97;
+    color: #155724;
+}
+
+.error {
+    display: block;
+    color: #c0392b;
+    font-size: 0.85em;
+    margin-top: 4px;
+}
