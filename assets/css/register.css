@@ -143,6 +143,8 @@ button:hover {
     font-size: 0.9em;
 }
 
+
+/* --------- Mensaje aviso --------- */
 .mensaje {
     padding: 10px;
     border-radius: 10px;
@@ -168,4 +170,14 @@ button:hover {
     color: #c0392b;
     font-size: 0.85em;
     margin-top: 4px;
+}
+
+.relogin a:link, a:visited, a:active{
+    text-decoration: none;
+    color: inherit;
+}
+
+.relogin{
+    padding: 5px;
+    text-align: right;
 }

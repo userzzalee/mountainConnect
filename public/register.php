@@ -1,5 +1,12 @@
 <?php
 //Lo primero que haces es verificar que el formulario esta utilizando el metodo post para ello lo hacemos con un if
+    $mensaje = "";
+    $tipo_mensaje = "";
+    $errores = []; 
+
+    session_start();
+    $listusu = $_SESSION["baseusuarios"] ?? [];
+
     if($_SERVER["REQUEST_METHOD"] === "POST"){
         /*Lo que hace el servidor es recoger lo que hemos enviado y lo guarda en la variable que le hayamos asginado,
             El ?? "" Si el usuario envia el campo name, guárdalo en $nombre. Si no lo envió, 
@@ -36,9 +43,9 @@
             $errores[] = "Debe tener al menos 8 caracteres la contraseña.";
         }
 
-        if (empty($confirmada)) {
+        if (empty($conconfirmada)) {
             $errores[] = "Confirma tu contraseña.";
-        } elseif ($confirmada !== $contraseña) {
+        } elseif ($conconfirmada !== $contraseña) {
             $errores[] = "Las contraseñas no coinciden.";
         }
 
@@ -71,6 +78,21 @@
             $mensaje = implode("<br>", $errores); //El implode transforma el contenido del array ($errores) a texto
             $tipo_mensaje = "error";
         }
+        
+        
+        $listusu[] = $usuario; // El array usuario se guarda en listusu
+        $_SESSION["baseusuarios"] = $listusu; // Ahora esto guarda la lista de usuarios (listusu) dentro de la session de register bajo el nombre de baseusuarios 
+        
+
+        /*
+        $_SESSION["$nombre"];
+        $_SESSION["$correo"];
+        $_SESSION["$contraseña"];
+        $_SESSION["$confirmada"];
+        $_SESSION["$nivel"];
+        $_SESSION["$especialidad"];
+        $_SESSION["$provincia"];
+        */
     }
 ?>
 
@@ -83,19 +105,6 @@
     <link rel="stylesheet" href="../assets/css/register.css">
 </head>
 <body>
-    <header class="header">
-        <div class="logo">
-            <img src="../assets/images/logo_mountain.svg" alt="">
-            <h1>Mountain Connect</h1>
-        </div>
-        <nav>
-            <ul>
-                <li><a href="#">Login</a></li>
-                <li><a href="#">Registro</a></li>
-            </ul>
-        </nav>
-    </header>
-
     <main class="register-container">
         <section class="register-card">
             <h2>Únete a la comunidad de escaladores</h2>
@@ -108,61 +117,51 @@
 
             <form id="registerForm" method="POST" name="registerForm" novalidate>
                 <div class="form-group">
-                    <label for="username">Nombre de usuario *</label>
+                    <label for="username">Nombre de usuario</label>
                     <input type="text" id="name" name="name" required minlength="3" placeholder="Ej: roca_viva">
-                    <span class="error">Campo obligatorio</span>
                 </div>
 
                 <div class="form-group">
-                    <label for="email">Correo electrónico *</label>
+                    <label for="email">Correo electrónico</label>
                     <input type="email" id="email" name="email" required placeholder="correo@ejemplo.com">
-                    <span class="error">Correo no válido</span>
                 </div>
 
                 <div class="form-group">
-                    <label for="password">Contraseña *</label>
+                    <label for="password">Contraseña</label>
                     <input type="password" id="password" name="password" required minlength="8" placeholder="Mínimo 8 caracteres">
-                    <span class="error">Debe tener al menos 6 caracteres</span>
                 </div>
 
                 <div class="form-group">
-                    <label for="confirm_password">Confirmar contraseña *</label>
+                    <label for="confirm_password">Confirmar contraseña</label>
                     <input type="password" id="confirm_password" name="confirm_password" required placeholder="Repite tu contraseña">
-                    <span class="error">Las contraseñas no coinciden</span>
                 </div>
 
                 <div class="form-group">
-                    <label for="nivel">Nivel de experiencia *</label>
+                    <label for="nivel">Nivel de experiencia</label>
                     <select id="lvl" name="lvl" required>
                         <option value="">Selecciona una opción</option>
                         <option value="principiante">Principiante</option>
                         <option value="intermedio">Intermedio</option>
                         <option value="avanzado">Avanzado</option>
                     </select>
-                    <span class="error">Selecciona un nivel</span>
                 </div>
 
                 <div class="form-group">
-                    <label for="especialidad">Especialidad *</label>
+                    <label for="especialidad">Especialidad</label>
                     <input type="text" id="speciality" name="speciality" required placeholder="Ej: Escalada deportiva, ferratas...">
-                    <span class="error">Campo obligatorio</span>
                 </div>
 
                 <div class="form-group">
-                    <label for="provincia">Provincia *</label>
+                    <label for="provincia">Provincia</label>
                     <input type="text" id="province" name="province" required placeholder="Ej: Huesca, Granada...">
-                    <span class="error">Campo obligatorio</span>
                 </div>
 
+                <div class="relogin">
+                    <a href="login.php">Vuelve al Login</a>
+                </div>
         <button type="submit">Crear cuenta</button>
             </form>
         </section>
-    </main>
-
-    <footer class="footer">
-        <p>&copy; 2025 Mountain Connect | Comunidad de Escalada</p>
-    </footer>
-
-    
+    </main>     
 </body>
 </html>
