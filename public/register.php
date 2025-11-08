@@ -82,17 +82,6 @@
         
         $listusu[] = $usuario; // El array usuario se guarda en listusu
         $_SESSION["baseusuarios"] = $listusu; // Ahora esto guarda la lista de usuarios (listusu) dentro de la session de register bajo el nombre de baseusuarios 
-        
-
-        /*
-        $_SESSION["$nombre"];
-        $_SESSION["$correo"];
-        $_SESSION["$contraseña"];
-        $_SESSION["$confirmada"];
-        $_SESSION["$nivel"];
-        $_SESSION["$especialidad"];
-        $_SESSION["$provincia"];
-        */
     }
 ?>
 
