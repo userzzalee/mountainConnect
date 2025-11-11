@@ -1,108 +1,83 @@
-/* Reseteo general para eliminar márgenes blancos */
-html, body {
-    margin: 0;
-    padding: 0;
-}
-
-/* Header unificado sin espacio a los lados */
-header {
+/* ===============================
+   HEADER COMPACTO
+   =============================== */
+   header {
     background: linear-gradient(135deg, #264653, #2a9d8f);
     color: #fff;
-    padding: 20px 40px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-    border-bottom: 1px solid rgba(255,255,255,0.15);
+    padding: 8px 24px; /* 🔹 menos espacio vertical */
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
     position: sticky;
     top: 0;
     z-index: 1000;
-    width: 100%;
-    box-sizing: border-box;
+    height: 64px; /* 🔹 altura controlada */
 }
 
+/* ===============================
+   LOGO
+   =============================== */
 .logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 1.8rem;
+    font-size: 1.4rem;
     font-weight: 700;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
 }
 
-.logo svg {
-    width: 32px;
-    height: 32px;
-    fill: #e9c46a;
-}
-
-/* Agrupamos el nav y el perfil juntos */
+/* ===============================
+   NAV CONTAINER
+   =============================== */
 .nav-container {
     display: flex;
     align-items: center;
-    gap: 15px; /* pequeño espacio entre el nav y el icono */
+    gap: 14px;
 }
 
-nav {
+/* ===============================
+   BOTONES DE NAVEGACIÓN
+   =============================== */
+.nav-links {
     display: flex;
-    gap: 25px;
+    gap: 10px;
 }
 
-nav a {
+/* 🔹 Los botones ahora son más pequeños */
+.nav-item {
     color: #fff;
     text-decoration: none;
     font-weight: 500;
     font-size: 1rem;
-    position: relative;
-    transition: color 0.3s ease;
-}
-
-nav a::after {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    width: 0%;
-    height: 2px;
-    background-color: #e9c46a;
-    transition: width 0.3s ease;
-}
-
-nav a:hover {
-    color: #e9c46a;
-}
-
-nav a:hover::after {
-    width: 100%;
-}
-
-/* Botón de perfil */
-.perfil-btn {
-    display: flex;
-    align-items: center;
-}
-
-.perfil-btn a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
     background-color: rgba(255, 255, 255, 0.15);
-    color: #fff;
-    text-decoration: none;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+    padding: 10px 15px; /* 🔹 reducido (antes 10–18px) */
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    line-height: 1; /* evita que el texto empuje verticalmente */
 }
 
-.perfil-btn a:hover {
+/* Hover */
+.nav-item:hover {
     background-color: #e9c46a;
     color: #264653;
-    transform: scale(1.05);
+    transform: translateY(-2px);
 }
 
-.perfil-btn svg {
-    width: 22px;
-    height: 22px;
+/* ===============================
+   PERFIL
+   =============================== */
+.perfil {
+    display: flex;
+    align-items: center;
 }
 
+.perfil-item {
+    font-weight: 600;
+}
+
+.perfil-item .nombre {
+    font-size: 0.85rem;
+    margin-left: 4px;
+}

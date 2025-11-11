@@ -1,30 +1,28 @@
+<?php 
+    include "../includes/header.php"; 
+?> 
+
 <?php
-    session_start();
     $todosusuarios = $_SESSION["baseusuarios"] ?? [];
 
     if($_SERVER["REQUEST_METHOD"] === "POST"){
-    $logincorreo = $_POST["lusu"];
-    $logincontraseña = $_POST["lcon"];
+        $logincorreo = $_POST["lusu"];
+        $logincontraseña = $_POST["lcon"];
 
-    foreach($todosusuarios as $usuario){
-        if ($usuario['correo'] == $logincorreo && $usuario['contraseña'] == $logincontraseña) {
-            header('Location: index.php');
-            exit;
+        foreach($todosusuarios as $usuario){
+            if ($usuario['correo'] == $logincorreo && $usuario['contraseña'] == $logincontraseña) {
+                $_SESSION["estadoinicio"] = true;
+                header("Location: index.php"); //header sirve para redireccionar a una pagina 
+                exit;
+            }
         }
     }
-}
 ?>
 
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Iniciar Sesión</title>
+    
     <link rel="stylesheet" href="../assets/css/login.css">
-</head>
-<body>
-
+    <link rel="stylesheet" href="../assets/css/footer.css">
+    <link rel="stylesheet" href="../assets/css/header.css">
     <div class="login-container">
         <div class="login-box">
             <div class="logo">
@@ -39,10 +37,10 @@
                 <input type="text" placeholder="Correo" required name="lusu" id="lusu">
                 <input type="password" placeholder="Contraseña" required name="lcon" id="lcon">
                 <button type="submit">Entrar</button>
-                <a href="/public/register.php"><span>No tiene cuenta?</span> Crear una cuenta</a>
+                <a href="/public/register.php"><span>¿No tiene cuenta?</span> Crear una cuenta</a>
             </form>
         </div>
-    </div>
-
-</body>
-</html>
+    </div>  
+    <?php 
+        include "../includes/footer.php"; 
+    ?>

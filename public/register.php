@@ -1,10 +1,15 @@
 <?php
+    include "../includes/header.php"; 
+?>
+
+<?php
 //Lo primero que haces es verificar que el formulario esta utilizando el metodo post para ello lo hacemos con un if
     $mensaje = "";
     $tipo_mensaje = "";
     $errores = []; 
+    $usuario = [];
 
-    session_start();
+
     $listusu = $_SESSION["baseusuarios"] ?? [];
 
     if($_SERVER["REQUEST_METHOD"] === "POST"){
@@ -25,6 +30,7 @@
         completos y con el formato adecuado antes de guardarlos
         */
         
+        //Validar si ya existe una cuenta, para que de error
         if (empty($nombre)) {
             $errores[] = "El nombre es obligatorio.";
         } elseif (strlen($nombre) < 3) {
@@ -74,26 +80,23 @@
             ];
             $mensaje = "Se ha registrado el usuario";
             $tipo_mensaje = "exito";
+            $_SESSION["estadoinicio"] = true;
+            header("Location: index.php");
         } else {
             $mensaje = implode("<br>", $errores); //El implode transforma el contenido del array ($errores) a texto
             $tipo_mensaje = "error";
         }
         
         
-        $listusu[] = $usuario; // El array usuario se guarda en listusu
-        $_SESSION["baseusuarios"] = $listusu; // Ahora esto guarda la lista de usuarios (listusu) dentro de la session de register bajo el nombre de baseusuarios 
+        $listusu[] = $usuario; // El array usuario se guarda en listusu que es otro array
+        $_SESSION["baseusuarios"] = $listusu; // Ahora esto guarda la lista de usuarios (listusu) dentro de la session de register bajo el nombre de baseusuarios
+
+        //Esto lo que es que en una variable llamada baseusuarios guarda todo el array de listusu para que despues que con el $_session se puede ver en en el archivo de login 
     }
 ?>
 
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro - Mountain Connect</title>
+    <link rel="stylesheet" href="../assets/css/header.css">
     <link rel="stylesheet" href="../assets/css/register.css">
-</head>
-<body>
     <main class="register-container">
         <section class="register-card">
             <h2>Únete a la comunidad de escaladores</h2>
@@ -146,11 +149,12 @@
                 </div>
 
                 <div class="relogin">
-                    <a href="login.php">Vuelve al Login</a>
+                    <a href="login.php"><span>¿Tienes ya cuenta?</span> Login</a>
                 </div>
         <button type="submit">Crear cuenta</button>
             </form>
         </section>
-    </main>     
-</body>
-</html>
+    </main>   
+    <?php 
+        include "../includes/footer.php"; 
+    ?>

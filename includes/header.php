@@ -1,3 +1,24 @@
+<?php
+    session_start();
+    $usuarioheader = $_SESSION["baseusuarios"] ?? [];
+    if(!isset($_SESSION["estadoinicio"])){
+        $_SESSION["estadoinicio"] = true;
+    }
+
+    
+    // El isset lo que hace aqui es verificar si la variable existe y no es null. Delante invierte el resultado, por lo que la condición es true cuando la variable no existe. Esto nos ayuda a evitar errores. Esto asegura que tu sesión siempre tenga un valor definido antes de usarlo en comparaciones posteriores (Explicado por el grade de Sergio)  
+
+    /*
+        1. Comprobamos que el usuario esta activo con un boolean en true en login
+        2. Lo llamamos en el header.php con el $_SESSION
+        3. Con un else se vera el la pagina con todas las opciones desbloquedas
+        
+    */
+
+    $usuarioheader = $_SESSION["nombreusuario"] ?? null;
+    if($_SESSION["estadoinicio"] == false):
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,31 +28,42 @@
     <link rel="stylesheet" href="../assets/css/header.css">
 </head>
 <body>
-    <header>
-        <div class="logo">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 2l4 7h-3v7h-2V9H8l4-7zM5 22h14v-2H5v2z"/>
-            </svg>
-            <span>EscalaLibre</span>
+<header>
+    <div class="logo">
+        <span>EscaladaLibre</span>
+    </div>
+    <div class="nav-container">
+        <nav class="nav-links">
+            <a href="../public/login.php" class="nav-item">Login</a>
+            <a href="../public/register.php" class="nav-item">Register</a>
+        </nav>
+    </div>
+</header>
+
+    <?php
+        else:
+    ?>
+
+<header>
+    <div class="logo">
+        <span>EscaladaLibre</span>
+    </div>
+    <div class="nav-container">
+        <nav class="nav-links">
+            <a href="../public/index.php" class="nav-item">Inicio</a>
+            <a href="#" class="nav-item">Rutas</a>
+        </nav>
+        <div class="perfil">
+            <a href="../public/profile.php" class="nav-item perfil-item">
+                😈
+                <span class="nombre">
+                    <?php echo "$usuarioheader"; ?>
+                </span>
+            </a>
         </div>
-        <div class="nav-container">
-            <nav>
-                <a href="#">Inicio</a>
-                <a href="#">Rutas</a>
-                <a href="#">Equipo</a>
-                <a href="#">Contacto</a>
-            </nav>
-            <div class="perfil-btn">
-                <a href="../public/profile.php" title="Perfil">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 
-                            1.79-4 4 1.79 4 4 4zm0 2c-3.33 0-6 2.67-6 
-                            6h12c0-3.33-2.67-6-6-6z"/>
-                    </svg>
-                </a>
-            </div>
-        </div>
-    </header>
-</body>
-</html>
+    </div>
+</header>
+
+<?php
+    endif;
+?>
