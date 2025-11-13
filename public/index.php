@@ -1,10 +1,9 @@
     <?php 
-        include "../includes/header.php"; 
+        include __DIR__ . "/../includes/header.php"; 
     ?> <!--Sirve para llamar al archivo header -->
 
     <title>Pagina Montañismo</title>
-    <link rel="stylesheet" href="../assets/css/index.css">
-    <link rel="stylesheet" href="../assets/css/header.css">
+    <link rel="stylesheet" href="../assets/css/main.css">
 
 
     <!-- Sección Hero -->
@@ -109,7 +108,9 @@
     </section>
 
     
-    <?php include "../includes/footer.php"; ?> <!--Sirve para llamar al archivo footer -->
+    <?php 
+        include __DIR__ . "/../includes/footer.php"; 
+    ?> <!--Sirve para llamar al archivo footer -->
 
 
 

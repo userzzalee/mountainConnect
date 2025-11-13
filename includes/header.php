@@ -25,7 +25,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../assets/css/header.css">
+    <link rel="stylesheet" href="../assets/css/main.css">
 </head>
 <body>
 <header>
@@ -34,8 +34,8 @@
     </div>
     <div class="nav-container">
         <nav class="nav-links">
-            <a href="../public/login.php" class="nav-item">Login</a>
-            <a href="../public/register.php" class="nav-item">Register</a>
+            <a href="/public/login.php" class="nav-item">Login</a>
+            <a href="/public/register.php" class="nav-item">Register</a>
         </nav>
     </div>
 </header>
@@ -50,11 +50,11 @@
     </div>
     <div class="nav-container">
         <nav class="nav-links">
-            <a href="../public/index.php" class="nav-item">Inicio</a>
-            <a href="#" class="nav-item">Rutas</a>
+            <a href="/public/index.php" class="nav-item">Inicio</a>
+            <a href="/public/routes/create.php" class="nav-item">Rutas</a>
         </nav>
         <div class="perfil">
-            <a href="../public/profile.php" class="nav-item perfil-item">
+            <a href="/public/profile.php" class="nav-item perfil-item">
                 😈
                 <span class="nombre">
                     <?php echo "$usuarioheader"; ?>

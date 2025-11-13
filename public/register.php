@@ -1,5 +1,5 @@
 <?php
-    include "../includes/header.php"; 
+    include __DIR__ ."/../includes/header.php"; 
 ?>
 
 <?php
@@ -95,8 +95,7 @@
     }
 ?>
 
-    <link rel="stylesheet" href="../assets/css/header.css">
-    <link rel="stylesheet" href="../assets/css/register.css">
+    <link rel="stylesheet" href="../assets/css/main.css">
     <main class="register-container">
         <section class="register-card">
             <h2>Únete a la comunidad de escaladores</h2>
@@ -156,5 +155,5 @@
         </section>
     </main>   
     <?php 
-        include "../includes/footer.php"; 
+        include __DIR__ . "/../includes/footer.php"; 
     ?>

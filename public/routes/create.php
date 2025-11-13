@@ -1,45 +1,153 @@
 <?php
-    include "../../includes/header.php"; 
+    include __DIR__ . "/../../includes/header.php"; 
 ?>
 
 <?php
     $formerror = [];
+    $formi = [];
+    $ruta = $dificultad = $distancia = $desnivel = $duracion = $provincia = $epoca = $descripcion = $niveltec = $nivelfisico = $fotos = "";
+    $mensaje = "";
+    $tipo_mensaje = "";
 
+    $lisforms = $_SESSION["baseforms"] ?? [];
 
-    if($_SERVER["guardar_ruta.php"] === "POST"){
+    if($_SERVER["REQUEST_METHOD"] === "POST"){
         $ruta = $_POST["nombre_ruta"] ?? "";
         $dificultad = $_POST["dificultad"] ?? "";
-        $distancia = $_POST["distacia"] ?? "";
-        $desnivel = $_POST["desnivel"] ?? "";
-        $duracion = $_POST["duracion"] ?? "";
+        $distancia = $_POST["distancia"] ?? 0;
+        $desnivel = $_POST["desnivel"] ?? 0;
+        $duracion = $_POST["duracion"] ?? 1;
         $provincia = $_POST["provincia"] ?? "";
         $epoca = $_POST["epoca"] ?? "";
         $descripcion = $_POST["descripcion"] ?? "";
-        $niveltec = $_POST["nivel_tecnico"] ?? "";
-        $nivelfisico = $_POST["nivel_fisico"] ?? "";
+        $niveltec = $_POST["nivel_tecnico"] ?? 1;
+        $nivelfisico = $_POST["nivel_fisico"] ?? 1;
         $fotos = $_POST["fotos"] ?? "";
 
-        $fotos = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+        //$fotos = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
 
-
-        if($_FILES["fotos"]["size"] > 2000000) {
-            $formerror[] = "El archivo es muy grande";
+        if(empty($ruta)){
+            $formerror[] = "Ponle un nombre a la ruta";
+        } elseif (strlen($ruta) < 2) {
+            $formerror[] = "El nombre de la ruta debe tener al menos 2 caracteres.";
         }
 
-        if($fotos != "jpg" || $fotos != "jpeg" || $fotos != "png"){
-            $formerror[] = "El archivo no tine el formato bueno";
+        if(empty($dificultad)){
+            $formerror[] = "Elige una difucultad";
         }
 
-        $target_dir = "";
+        if(empty($distancia)){
+            $formerror[] = "Pon una distancia valida";
+        } elseif ($distancia <= 0 || $distancia > 300){
+            $formerror[] = "Debe tener una distancia adecuada (0 a 300km)";
+        }
+
+        if(empty($desnivel)){
+            $formerror[] = "Pon una desnivel positivo";
+        } elseif ($desnivel <= 0 || $desnivel > 5000){
+            $formerror[] = "Debe tener una desnivel adecuada (0 a 5000m)";
+        }
+
+        if(empty($duracion)){
+            $formerror[] = "Pon una duracion adecuada";
+        } elseif ($desnivel <= 1 || $desnivel > 48){
+            $formerror[] = "Tienes un tiempo de entre (1H a 48H)";
+        }
+
+        if(empty($provincia)){
+            $formerror[] = "Tienes que elegir una provincia";
+        }
+
+        if(empty($epoca)){
+            $formerror[] = "Selecciona una epoca del año";
+        }
+
+        if(empty($descripcion)){
+            $formerror[] = "Escribe una descripcion";
+        } elseif ($descripcion = "") {
+            $formerror[] = "Tiene que rellenarlo con una letra como minimo";
+        }
+
+        if(empty($niveltec)){
+            $formerror[] = "Tiene que escoger un nivel tecnico";
+        }
+
+        if(empty($nivelfisico)){
+            $formerror[] = "Tiene que escoger un nivel fisico";
+        }
+
+
+        // --- FOTOS ---
+
+        if (isset($_FILES['fotos'])) {
+            $fotos = $_FILES['fotos'];
+            
+            // Información del archivo
+            $nombre = $fotos['name'];
+            $tipo = $fotos['type'];
+            $tamaño = $fotos['size'];
+            $tmp = $fotos['tmp_name'];
+            $error = $fotos['error'];
+            
+        // Validar que no haya errores
+            if ($error === UPLOAD_ERR_OK) {
+                // Validar tamaño (ej: 2MB máximo)
+                if ($tamaño <= 2097152) {
+                    // Validar tipo
+                $extension = pathinfo($nombre, PATHINFO_EXTENSION);
+                $permitidas = ['jpg', 'jpeg', 'png', 'pdf'];
+                if (in_array(strtolower($extension), $permitidas)) {
+                    // Generar nombre único
+                    $nuevo_nombre = uniqid() . '.' . $extension;
+                    $destino = 'uploads/' . $nuevo_nombre;
+                    // Mover archivo
+                    if (move_uploaded_file($tmp, $destino)) {
+                        echo "Archivo subido correctamente";
+                    } else {
+                        echo "Error al mover el archivo";
+                    }
+                } else {
+                    echo "Tipo de archivo no permitido";
+                }
+            } else {
+                echo "Archivo demasiado grande";
+            }
+        } else {
+            echo "Error en la subida: " . $error;
+        }
+    }
+
+    if(empty($formerror)){
+        $formi = [
+            "ruta" => $ruta,
+            "dificultad" => $dificultad,
+            "distancia" => $distancia,
+            "desnivel" => $desnivel,
+            "duracion" => $duracion,
+            "provincia" => $provincia,
+            "epoca" => $epoca,
+            "descripcion" => $descripcion,
+            "niveltec" => $niveltec,
+            "nivelfisico" => $nivelfisico,
+            "fotos" => $fotos
+        ];
+        $mensaje = "Se ha envia el formulario";
+        $tipo_mensaje = "exito";
+        header("Location: list.php");
+    } else {
+        $mensaje = implode("<br>", $formerror); 
+        $tipo_mensaje = "error";
+    }
+
+    $listaforms[] = $formi;
+    $_SESSION["baseforms"] = $listaforms;
+
     }
 ?>
 
 
-    <link rel="stylesheet" href="../../assets/css/header.css">
-    <link rel="stylesheet" href="../../assets/css/footer.css">
-    <link rel="stylesheet" href="../../assets/css/create.css">
-
+    <link rel="stylesheet" href="../../assets/css/main.css">
 
     <!-- Formulario -->
     <main class="profile-container">
@@ -53,8 +161,13 @@
                 </svg>
             </div>
             <h2>Registrar Nueva Ruta</h2>
+            <?php
+                echo '<div class="mensaje ' . $tipo_mensaje . '">';
+                echo $mensaje;
+                echo '</div>'
+            ?>
 
-            <form action="guardar_ruta.php" method="post" class="ruta-form">
+            <form id="rutaForm" method="post" class="ruta-form" name="rutaForm">
                 <label>Nombre de la ruta
                     <input type="text" name="nombre_ruta" required>
                 </label>
@@ -108,12 +221,12 @@
                     <textarea name="descripcion" rows="4" required></textarea>
                 </label>
 
-                <label>Nivel técnico (1-5)
-                    <input type="number" name="nivel_tecnico" min="1" max="5" required>
+                <label>Nivel Tecnico
+                    <input type="number" name="nivel_tecnico" required>
                 </label>
 
-                <label>Nivel físico (1-5)
-                    <input type="number" name="nivel_fisico" min="1" max="5" required>
+                <label>Nivel Fisico
+                    <input type="number" name="nivel_fisico" required>
                 </label>
 
                 <!-- Subir fotos -->
@@ -127,5 +240,5 @@
     </main>
 
 <?php
-    include "../../includes/footer.php"; 
+    include __DIR__ . "/../../includes/footer.php"; 
 ?>

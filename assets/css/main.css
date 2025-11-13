@@ -1,0 +1,1300 @@
+/* ============================================= */
+/*               ESTILOS UNIFICADOS              */
+/* ============================================= */
+
+/* ============ VARIABLES Y CONFIGURACIÓN GENERAL ============ */
+
+:root {
+    --primary-color: #2c5530;
+    --secondary-color: #4a7c59;
+    --accent-color: #8fb996;
+    --light-color: #f8f9fa;
+    --dark-color: #343a40;
+    --text-color: #333;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease;
+}
+
+/* Reset general */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: #f5f5f5;
+    /* Asegurar que el body tenga posición relativa */
+    position: relative;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* ============ ESTILOS DEL HEADER ============ */
+
+header {
+    background: linear-gradient(135deg, #264653, #2a9d8f);
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 24px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    height: 64px;
+    /* Asegurar que el header esté por encima del contenido */
+}
+
+.logo {
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.nav-container {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 10px;
+}
+
+.nav-item {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1rem;
+    background-color: rgba(255, 255, 255, 0.15);
+    padding: 10px 15px;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    line-height: 1;
+}
+
+.nav-item:hover {
+    background-color: #e9c46a;
+    color: #264653;
+    transform: translateY(-2px);
+}
+
+.perfil {
+    display: flex;
+    align-items: center;
+}
+
+.perfil-item {
+    font-weight: 600;
+}
+
+.perfil-item .nombre {
+    font-size: 0.85rem;
+    margin-left: 4px;
+}
+
+/* ============ SECCIÓN HERO (PÁGINA PRINCIPAL) ============ */
+
+.hero {
+    background-image: 
+    linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
+    url("../images/indeximg.png");    
+    background-size: cover;
+    background-position: center;
+    color: white;
+    text-align: center;
+    padding: 100px 20px;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Asegurar que esté debajo del header */
+    position: relative;
+    z-index: 1;
+}
+
+.hero-content h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.tagline {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 300;
+}
+
+.description {
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto 2.5rem;
+    opacity: 0.9;
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 30px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: var(--transition);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.9rem;
+}
+
+.btn-primary {
+    background-color: var(--accent-color);
+    color: var(--dark-color);
+}
+
+.btn-primary:hover {
+    background-color: #7aa881;
+    transform: translateY(-3px);
+    box-shadow: var(--shadow);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: white;
+    border: 2px solid white;
+}
+
+.btn-secondary:hover {
+    background-color: white;
+    color: var(--primary-color);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow);
+}
+
+/* ============ SECCIONES DE CONTENIDO ============ */
+
+.features,
+.technologies,
+.project-info {
+    padding: 80px 0;
+    position: relative;
+    z-index: 1;
+}
+
+.features,
+.project-info {
+    background-color: white;
+}
+
+.technologies {
+    background-color: var(--light-color);
+}
+
+.features h2,
+.technologies h2,
+.project-info h2 {
+    text-align: center;
+    margin-bottom: 50px;
+    color: var(--primary-color);
+    font-size: 2.2rem;
+}
+
+.features-grid,
+.tech-grid {
+    display: grid;
+    gap: 30px;
+}
+
+.features-grid {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.tech-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.feature-card,
+.tech-item {
+    background: white;
+    border-radius: 10px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.tech-item:hover {
+    transform: translateY(-5px);
+}
+
+.feature-icon,
+.tech-icon {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.feature-card h3,
+.tech-item h3 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+}
+
+.feature-card p,
+.tech-item p {
+    color: #666;
+    line-height: 1.6;
+}
+
+.project-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: center;
+}
+
+.project-text p {
+    margin-bottom: 20px;
+    line-height: 1.7;
+}
+
+.project-text ul {
+    margin: 20px 0;
+    padding-left: 20px;
+}
+
+.project-text li {
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.project-text li:before {
+    content: "•";
+    color: var(--accent-color);
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+}
+
+.placeholder-image {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    height: 300px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.2rem;
+    box-shadow: var(--shadow);
+}
+
+/* ============ FORMULARIOS Y TARJETAS ============ */
+
+/* Contenedores comunes */
+.profile-container,
+.login-container,
+.register-container,
+.create-profile-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    /* Asegurar que estén debajo del header */
+    position: relative;
+    z-index: 1;
+    /* Agregar margen superior para evitar superposición */
+    margin-top: 80px;
+    min-height: calc(100vh - 160px);
+}
+
+.profile-container {
+    height: auto;
+    min-height: calc(100vh - 160px);
+}
+
+.login-container,
+.register-container {
+    min-height: calc(100vh - 160px);
+}
+
+.create-profile-container {
+    min-height: calc(100vh - 160px);
+    margin-top: 80px;
+}
+
+/* Tarjetas comunes */
+.profile-card,
+.login-box,
+.register-card,
+.create-profile-card {
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    padding: 40px 50px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: fadeIn 0.8s ease;
+    /* Asegurar que las tarjetas estén en el flujo normal */
+    position: relative;
+    z-index: 2;
+}
+
+.profile-card:hover,
+.login-box:hover,
+.register-card:hover,
+.create-profile-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.profile-card {
+    max-width: 550px;
+}
+
+.login-box {
+    max-width: 400px;
+}
+
+.register-card {
+    max-width: 550px;
+}
+
+.create-profile-card {
+    max-width: 518px;
+    width: 100%;
+}
+
+/* Iconos de perfil */
+.profile-icon {
+    background: linear-gradient(135deg, #264653, #2a9d8f);
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-icon svg {
+    width: 42px;
+    height: 42px;
+    stroke: #fff;
+}
+
+/* Títulos de formularios */
+.profile-card h2,
+.login-box h2,
+.register-card h2,
+.create-profile-card h2 {
+    margin-bottom: 25px;
+    font-size: 1.8rem;
+    color: #264653;
+}
+
+/* Elementos de formulario comunes */
+.form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.ruta-form {
+    text-align: left;
+}
+
+.ruta-form label,
+.form-group label {
+    display: block;
+    font-weight: 500;
+    color: #264653;
+    margin-bottom: 8px;
+}
+
+.ruta-form input,
+.ruta-form select,
+.ruta-form textarea,
+.login-box input,
+.register-card input,
+.register-card select {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 1rem;
+    margin-bottom: 20px;
+    transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+
+.ruta-form input:focus,
+.ruta-form select:focus,
+.ruta-form textarea:focus,
+.login-box input:focus,
+.register-card input:focus,
+.register-card select:focus {
+    outline: none;
+    border-color: #2a9d8f;
+    box-shadow: 0 0 5px rgba(42, 157, 143, 0.4);
+}
+
+/* Botones comunes */
+.ruta-form button,
+.login-box button,
+.register-card button,
+.logout-btn {
+    background: linear-gradient(135deg, #264653, #2a9d8f);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s ease, background 0.3s ease;
+}
+
+.ruta-form button {
+    width: 100%;
+    border-radius: 25px;
+    margin-top: 10px;
+}
+
+.login-box button,
+.register-card button {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.logout-btn {
+    margin-top: 30px;
+    padding: 12px 24px;
+    border-radius: 25px;
+}
+
+.ruta-form button:hover,
+.login-box button:hover,
+.register-card button:hover,
+.logout-btn:hover {
+    background: #e76f51;
+    transform: scale(1.05);
+}
+
+/* Elementos específicos de formularios */
+.ruta-form fieldset {
+    border: 1px solid #ccc;
+    padding: 15px 20px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+}
+
+.ruta-form legend {
+    font-weight: 600;
+    color: #264653;
+}
+
+.ruta-form fieldset label {
+    display: inline-block;
+    margin-right: 15px;
+    font-weight: 400;
+    color: #2a9d8f;
+}
+
+.subtitle {
+    color: #264653;
+    margin-bottom: 20px;
+    font-size: 0.95rem;
+}
+
+/* Información de perfil */
+.profile-info p {
+    font-size: 1.1rem;
+    margin: 12px 0;
+    color: #2a9d8f;
+}
+
+.profile-info strong {
+    color: #264653;
+}
+
+/* Mensajes */
+.mensaje {
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.mensaje.error {
+    background-color: #ffe5e5;
+    border: 1px solid #ff4d4d;
+    color: #b30000;
+}
+
+.mensaje.exito {
+    background-color: #e3ffe8;
+    border: 1px solid #6fcf97;
+    color: #155724;
+}
+
+/* Enlaces */
+.login-box a,
+.relogin a {
+    display: block;
+    margin-top: 15px;
+    font-size: 0.9rem;
+    color: #2a9d8f;
+    text-decoration: none;
+}
+
+.login-box a:hover,
+.relogin a:hover {
+    text-decoration: underline;
+}
+
+/* ============ ESTILOS DEL FOOTER ============ */
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background: #2a9d8f;
+    color: #fff;
+    margin-top: 60px;
+    font-size: 0.9rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    /* Asegurar que el footer esté en el flujo normal */
+    position: relative;
+    z-index: 1;
+    width: 100%;
+}
+
+/* ============ ANIMACIONES ============ */
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ============ MEDIA QUERIES ============ */
+
+@media (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+    
+    .tagline {
+        font-size: 1.2rem;
+    }
+    
+    .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .btn {
+        width: 100%;
+        max-width: 250px;
+        text-align: center;
+    }
+    
+    .project-details {
+        grid-template-columns: 1fr;
+    }
+    
+    .features-grid,
+    .tech-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .login-box,
+    .register-card,
+    .profile-card,
+    .create-profile-card {
+        padding: 30px 25px;
+    }
+    
+    .profile-card {
+        padding: 30px 40px;
+    }
+    
+    /* Ajustes para móviles en contenedores de formularios */
+    .profile-container,
+    .login-container,
+    .register-container,
+    .create-profile-container {
+        margin-top: 100px;
+        min-height: calc(100vh - 180px);
+        padding: 15px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .create-profile-card {
+        padding: 30px 20px;
+    }
+    
+    .nav-links {
+        flex-direction: column;
+        gap: 5px;
+    }
+    
+    header {
+        height: auto;
+        padding: 15px 20px;
+        flex-direction: column;
+        gap: 10px;
+        position: relative;
+    }
+    
+    .nav-container {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    /* Ajustes adicionales para móviles pequeños */
+    .profile-container,
+    .login-container,
+    .register-container,
+    .create-profile-container {
+        margin-top: 120px;
+        min-height: calc(100vh - 200px);
+    }
+}
+
+/* ============ ESTILOS PARA GALERÍA DE FOTOS EN RUTAS ============ */
+
+.ruta-galeria {
+    margin-bottom: 20px;
+}
+
+.galeria-principal {
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.foto-principal {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.foto-principal:hover {
+    transform: scale(1.02);
+}
+
+.contador-fotos {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.miniaturas-container {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding: 5px 0;
+}
+
+.miniatura {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 8px;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.miniatura:hover {
+    opacity: 1;
+    transform: scale(1.05);
+}
+
+.miniatura.active {
+    opacity: 1;
+    border-color: #2a9d8f;
+}
+
+.sin-fotos {
+    height: 150px;
+    background: #f8f9fa;
+    border: 2px dashed #ddd;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #999;
+    margin-bottom: 20px;
+}
+
+.sin-fotos svg {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 10px;
+    stroke: #ccc;
+}
+
+.sin-fotos p {
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+/* Modal para foto completa */
+.modal-fotos {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 10000;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-contenido {
+    position: relative;
+    max-width: 90%;
+    max-height: 90%;
+}
+
+.modal-foto {
+    max-width: 100%;
+    max-height: 90vh;
+    object-fit: contain;
+    border-radius: 10px;
+}
+
+.cerrar-modal {
+    position: absolute;
+    top: -40px;
+    right: 0;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cerrar-modal:hover {
+    color: #e76f51;
+}
+
+.navegacion-modal {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+}
+
+.btn-modal {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    transition: all 0.3s ease;
+    margin: 0 20px;
+}
+
+.btn-modal:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+}
+
+.indicador-modal {
+    position: absolute;
+    bottom: -40px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    color: white;
+    font-size: 1rem;
+}
+
+/* Estados para diferentes cantidades de fotos */
+.ruta-con-fotos .ruta-stats {
+    margin-bottom: 15px;
+}
+
+.ruta-con-fotos .ruta-info {
+    margin-bottom: 15px;
+}
+
+/* Efectos de carga para fotos */
+.foto-cargando {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+/* ============ ESTILOS PARA LISTA DE RUTAS ============ */
+
+.rutas-container {
+    max-width: 1200px;
+    margin: 100px auto 50px;
+    padding: 0 20px;
+}
+
+.rutas-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.rutas-header h1 {
+    color: #264653;
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+}
+
+.rutas-header p {
+    color: #666;
+    font-size: 1.1rem;
+}
+
+.rutas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.ruta-card {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    padding: 25px;
+    transition: all 0.3s ease;
+    border-left: 4px solid #2a9d8f;
+}
+
+.ruta-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+.ruta-header {
+    display: flex;
+    justify-content: between;
+    align-items: flex-start;
+    margin-bottom: 15px;
+}
+
+.ruta-title {
+    flex: 1;
+}
+
+.ruta-title h3 {
+    color: #264653;
+    font-size: 1.4rem;
+    margin-bottom: 5px;
+}
+
+.ruta-dificultad {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.dificultad-facil {
+    background-color: #e8f5e8;
+    color: #2e7d32;
+}
+
+.dificultad-moderada {
+    background-color: #fff3e0;
+    color: #ef6c00;
+}
+
+.dificultad-dificil {
+    background-color: #ffebee;
+    color: #c62828;
+}
+
+.dificultad-muy_dificil {
+    background-color: #f3e5f5;
+    color: #7b1fa2;
+}
+
+.ruta-stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-bottom: 20px;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 10px;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.stat-value {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #264653;
+}
+
+.stat-label {
+    font-size: 0.8rem;
+    color: #666;
+    margin-top: 5px;
+}
+
+.ruta-info {
+    margin-bottom: 20px;
+}
+
+.ruta-provincia {
+    display: inline-block;
+    background: #e3f2fd;
+    color: #1565c0;
+    padding: 4px 12px;
+    border-radius: 15px;
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+}
+
+.ruta-descripcion {
+    color: #555;
+    line-height: 1.5;
+    margin-bottom: 15px;
+}
+
+.ruta-epocas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 15px;
+}
+
+.epoca-tag {
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    background: #f0f0f0;
+    color: #666;
+}
+
+.ruta-niveles {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.nivel-item {
+    text-align: center;
+    flex: 1;
+}
+
+.nivel-label {
+    font-size: 0.8rem;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.nivel-stars {
+    display: flex;
+    justify-content: center;
+    gap: 2px;
+}
+
+.star {
+    color: #ddd;
+    font-size: 1rem;
+}
+
+.star.active {
+    color: #ffc107;
+}
+
+.ruta-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+}
+
+.btn-small {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+}
+
+.btn-edit {
+    background: #2a9d8f;
+    color: white;
+}
+
+.btn-edit:hover {
+    background: #248277;
+    transform: translateY(-2px);
+}
+
+.btn-delete {
+    background: #e76f51;
+    color: white;
+}
+
+.btn-delete:hover {
+    background: #d65a3c;
+    transform: translateY(-2px);
+}
+
+.no-rutas {
+    text-align: center;
+    padding: 60px 20px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.no-rutas .profile-icon {
+    margin-bottom: 20px;
+}
+
+.no-rutas h3 {
+    color: #264653;
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+}
+
+.no-rutas p {
+    color: #666;
+    margin-bottom: 25px;
+}
+
+.btn-crear-ruta {
+    display: inline-block;
+    padding: 12px 30px;
+    background: linear-gradient(135deg, #2a9d8f, #264653);
+    color: white;
+    text-decoration: none;
+    border-radius: 25px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-crear-ruta:hover {
+    background: #e76f51;
+    transform: translateY(-2px);
+}
+
+/* Responsive para lista de rutas */
+@media (max-width: 768px) {
+    .rutas-container {
+        margin-top: 120px;
+        padding: 0 15px;
+    }
+    
+    .rutas-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .ruta-stats {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        padding: 10px;
+    }
+    
+    .ruta-header {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .ruta-dificultad {
+        align-self: flex-start;
+    }
+    
+    .ruta-actions {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .ruta-stats {
+        grid-template-columns: 1fr;
+    }
+    
+    .ruta-niveles {
+        flex-direction: column;
+        gap: 15px;
+    }
+}
+
+/* ============ ESTILOS DEL FOOTER ============ */
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background: #2a9d8f;
+    color: #fff;
+    margin-top: 60px;
+    font-size: 0.9rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    /* Asegurar que el footer esté siempre al final */
+    clear: both;
+}
+
+/* ============ ESTILOS PARA BOTONES DE PERFIL ============ */
+
+.profile-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 25px;
+}
+
+.btn-ver-rutas {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 16px;
+    background: linear-gradient(135deg, #e9c46a, #f4a261);
+    color: #264653;
+    text-decoration: none;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+}
+
+.btn-ver-rutas:hover {
+    background: #e76f51;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.btn-ver-rutas svg {
+    width: 18px;
+    height: 18px;
+    stroke: currentColor;
+}
+
+.logout-form {
+    margin: 0;
+}
+
+.logout-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 12px 20px;
+    background: linear-gradient(135deg, #264653, #2a9d8f);
+    color: #fff;
+    border: none;
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.logout-btn:hover {
+    background: #e76f51;
+    transform: scale(1.05);
+}
+
+.logout-btn svg {
+    width: 18px;
+    height: 18px;
+    stroke: currentColor;
+}
+
+/* Responsive para botones de perfil */
+@media (max-width: 480px) {
+    .profile-actions {
+        gap: 8px;
+    }
+    
+    .btn-ver-rutas {
+        padding: 8px 14px;
+        font-size: 0.85rem;
+    }
+    
+    .logout-btn {
+        padding: 10px 16px;
+        font-size: 0.9rem;
+    }
+}

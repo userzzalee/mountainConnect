@@ -1,5 +1,5 @@
 <?php 
-    include "../includes/header.php"; 
+    include __DIR__ . "/../includes/header.php"; 
 ?> 
 
 <?php
@@ -20,9 +20,7 @@
 ?>
 
     
-    <link rel="stylesheet" href="../assets/css/login.css">
-    <link rel="stylesheet" href="../assets/css/footer.css">
-    <link rel="stylesheet" href="../assets/css/header.css">
+    <link rel="stylesheet" href="../assets/css/main.css">
     <div class="login-container">
         <div class="login-box">
             <div class="logo">
@@ -42,5 +40,5 @@
         </div>
     </div>  
     <?php 
-        include "../includes/footer.php"; 
+        include __DIR__ . "/../includes/footer.php"; 
     ?>
