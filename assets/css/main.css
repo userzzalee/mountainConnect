@@ -894,6 +894,20 @@ footer {
     padding: 0 20px;
 }
 
+.contenedor-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Columnas flexibles */
+    gap: 16px; /* Espacio entre grids */
+    width: 100%;
+}
+
+.grid-item {
+    aspect-ratio: 1; /* Opcional: mantener relación cuadrada */
+    min-height: 150px; /* Altura mínima */
+    background: #eee; /* Color de ejemplo */
+    border-radius: 8px;
+}
+
 .rutas-header {
     text-align: center;
     margin-bottom: 40px;
@@ -912,9 +926,11 @@ footer {
 
 .rutas-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    grid-auto-flow: column;     /* las tarjetas se colocan en fila horizontal */
+    grid-auto-columns: 350px;   /* ancho fijo de cada tarjeta */
     gap: 30px;
-    margin-bottom: 40px;
+    overflow-x: auto;           /* habilita scroll horizontal si no caben */
+    padding-bottom: 10px;
 }
 
 .ruta-card {
@@ -924,6 +940,8 @@ footer {
     padding: 25px;
     transition: all 0.3s ease;
     border-left: 4px solid #2a9d8f;
+    width: 100%;  /* hace que la tarjeta llene su columna fija */
+    box-sizing: border-box;
 }
 
 .ruta-card:hover {

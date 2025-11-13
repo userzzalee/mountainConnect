@@ -9,7 +9,7 @@
     $mensaje = "";
     $tipo_mensaje = "";
 
-    $lisforms = $_SESSION["baseforms"] ?? [];
+    $listaforms = $_SESSION["baseforms"] ?? [];
 
     if($_SERVER["REQUEST_METHOD"] === "POST"){
         $ruta = $_POST["nombre_ruta"] ?? "";
@@ -45,13 +45,13 @@
 
         if(empty($desnivel)){
             $formerror[] = "Pon una desnivel positivo";
-        } elseif ($desnivel <= 0 || $desnivel > 5000){
-            $formerror[] = "Debe tener una desnivel adecuada (0 a 5000m)";
+        } elseif ($desnivel <= 0 || $desnivel > 8000){
+            $formerror[] = "Debe tener una desnivel adecuada (0 a 8000m)";
         }
 
         if(empty($duracion)){
             $formerror[] = "Pon una duracion adecuada";
-        } elseif ($desnivel <= 1 || $desnivel > 48){
+        } elseif ($duracion < 1 || $duracion > 48){
             $formerror[] = "Tienes un tiempo de entre (1H a 48H)";
         }
 
@@ -130,18 +130,22 @@
             "descripcion" => $descripcion,
             "niveltec" => $niveltec,
             "nivelfisico" => $nivelfisico,
-            "fotos" => $fotos
+            "fotos" => $nuevo_nombre
+            //clave y lo que guardo en la clave 
+            //fotos clave y nuevo nombre lo que guardo
         ];
+                $listaforms[] = $formi;
+                $_SESSION["baseforms"] = $listaforms;
         $mensaje = "Se ha envia el formulario";
         $tipo_mensaje = "exito";
         header("Location: list.php");
+        exit;
     } else {
         $mensaje = implode("<br>", $formerror); 
         $tipo_mensaje = "error";
     }
 
-    $listaforms[] = $formi;
-    $_SESSION["baseforms"] = $listaforms;
+    
 
     }
 ?>
@@ -183,15 +187,15 @@
                 </label>
 
                 <label>Distancia (km)
-                    <input type="number" name="distancia" step="0.1" required>
+                    <input type="number" name="distancia" step="0.1" required placeholder="1 - 300km">
                 </label>
 
                 <label>Desnivel positivo (m)
-                    <input type="number" name="desnivel" required>
+                    <input type="number" name="desnivel" required placeholder="1 - 8000m">
                 </label>
 
                 <label>Duración estimada (horas)
-                    <input type="number" name="duracion" step="0.1" required>
+                    <input type="number" name="duracion" step="0.1" required placeholder="1 - 48H">
                 </label>
 
                 <label>Provincia
@@ -238,6 +242,8 @@
             </form>
         </section>
     </main>
+
+
 
 <?php
     include __DIR__ . "/../../includes/footer.php"; 
