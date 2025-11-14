@@ -4,6 +4,7 @@
 
 <?php 
     $todasrutas = $_SESSION["baseforms"] ?? [];
+    $ruta = "";
 ?>
 
 <link rel="stylesheet" href="../../assets/css/main.css">
@@ -24,14 +25,15 @@
         <div class="ruta-card ruta-con-fotos">
             <div class="ruta-galeria">
                 <div class="galeria-principal">
-                    <img src="/mountainConnect/uploads/photos/{$rutaindividual["fotos"]}" alt="{$rutaindividual["fotos"]}" class="foto-principal">
+                    <div class="foto-principal">
+                        <img src="/mountainConnect/uploads/photo/<?= htmlspecialchars($rutaindividual['foto']) ?>" alt="photo">
                     <div class="contador-fotos">Fotos</div>
                 </div>
             </div>
 
             <div class="ruta-header">
                 <div class="ruta-title">
-                <h3><?= htmlspecialchars($rutaindividual["ruta"]) ?></h3>
+                    <h3><?= htmlspecialchars($rutaindividual["ruta"]) ?></h3>
                 </div>
                 <div class="ruta-dificultad dificultad-moderada">
                 <?= htmlspecialchars($rutaindividual["dificultad"]) ?>

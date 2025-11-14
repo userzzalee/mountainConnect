@@ -1,17 +1,29 @@
 <?php
-    include __DIR__ . "/../includes/header.php";
+    include __DIR__ ."/../includes/header.php";
 ?>
 
 <?php
         $todosusuarios = $_SESSION["baseusuarios"] ?? [];
-        foreach($todosusuarios as $usuario){
-            $correousuario = $usuario["correo"];
-            $nivelusuario = $usuario["nivel"];
-            $especialidadousuario = $usuario["especialidad"];
-            $nombreusuario = $usuario["nombre"];
+        $usuario = $_SESSION["usuario_actual"] ?? null;
+
+        if (!$usuario) {
+            header("Location: login.php");
+            exit;
         }
+        $usuario = $_SESSION["usuario_actual"] ?? [];
+
+        $nombreusuario = $usuario["nombre"];
+        $correousuario = $usuario["correo"];
+        $nivelusuario = $usuario["nivel"];
+        $especialidadousuario = $usuario["especialidad"];
+
+
 
         $_SESSION["nombreusuario"] = $nombreusuario ?? null;
+        if(!estadoPagina()){
+            header('Location: login.php');
+            exit;
+        }
 ?>
     
     <link rel="stylesheet" href="../assets/css/main.css">

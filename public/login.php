@@ -11,8 +11,11 @@
 
         foreach($todosusuarios as $usuario){
             if ($usuario['correo'] == $logincorreo && $usuario['contraseña'] == $logincontraseña) {
-                $_SESSION["estadoinicio"] = true;
-                header("Location: index.php"); //header sirve para redireccionar a una pagina 
+
+                $_SESSION["estadoinicio"] = TRUE;
+                $_SESSION["usuario_actual"] = $usuario; 
+        
+                header("Location: index.php");
                 exit;
             }
         }
@@ -35,7 +38,7 @@
                 <input type="text" placeholder="Correo" required name="lusu" id="lusu">
                 <input type="password" placeholder="Contraseña" required name="lcon" id="lcon">
                 <button type="submit">Entrar</button>
-                <a href="/public/register.php"><span>¿No tiene cuenta?</span> Crear una cuenta</a>
+                <a href="register.php"><span>¿No tiene cuenta?</span> Crear una cuenta</a>
             </form>
         </div>
     </div>  

@@ -1,9 +1,8 @@
 <?php
     session_start();
+    include_once __DIR__ ."/functions.php";
     $usuarioheader = $_SESSION["baseusuarios"] ?? [];
-    if(!isset($_SESSION["estadoinicio"])){
-        $_SESSION["estadoinicio"] = true;
-    }
+    $usuario = $_SESSION["usuario_actual"] ?? [];
 
     
     // El isset lo que hace aqui es verificar si la variable existe y no es null. Delante invierte el resultado, por lo que la condición es true cuando la variable no existe. Esto nos ayuda a evitar errores. Esto asegura que tu sesión siempre tenga un valor definido antes de usarlo en comparaciones posteriores (Explicado por el grade de Sergio)  
@@ -15,8 +14,9 @@
         
     */
 
-    $usuarioheader = $_SESSION["nombreusuario"] ?? null;
-    if($_SESSION["estadoinicio"] == false):
+    $usuarioheader = $usuario["nombre"] ?? null;
+    // if($_SESSION["estadoinicio"] == false):
+    if(!estadoPagina()):
 ?>
 
 <!DOCTYPE html>
@@ -34,8 +34,8 @@
     </div>
     <div class="nav-container">
         <nav class="nav-links">
-            <a href="/public/login.php" class="nav-item">Login</a>
-            <a href="/public/register.php" class="nav-item">Register</a>
+            <a href="/mountainConnect/public/login.php" class="nav-item">Login</a>
+            <a href="/mountainConnect/public/register.php" class="nav-item">Register</a>
         </nav>
     </div>
 </header>
@@ -50,11 +50,11 @@
     </div>
     <div class="nav-container">
         <nav class="nav-links">
-            <a href="/public/index.php" class="nav-item">Inicio</a>
-            <a href="/public/routes/create.php" class="nav-item">Rutas</a>
+            <a href="/mountainConnect/public/index.php" class="nav-item">Inicio</a>
+            <a href="/mountainConnect/public/routes/create.php" class="nav-item">Rutas</a>
         </nav>
         <div class="perfil">
-            <a href="/public/profile.php" class="nav-item perfil-item">
+            <a href="/mountainConnect/public/profile.php" class="nav-item perfil-item">
                 😈
                 <span class="nombre">
                     <?php echo "$usuarioheader"; ?>

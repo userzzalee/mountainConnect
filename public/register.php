@@ -39,7 +39,7 @@
 
         if (empty($correo)) {
             $errores[] = "El correo es obligatorio.";
-        } elseif (!filter_var($correo, FILTER_VALIDATE_EMAIL)) {
+        } elseif (!veriCorreo($correo)) {
             $errores[] = "El correo no tiene un formato valido.";
         }
 
@@ -81,6 +81,7 @@
             $mensaje = "Se ha registrado el usuario";
             $tipo_mensaje = "exito";
             $_SESSION["estadoinicio"] = true;
+            $_SESSION["usuario_actual"] = $usuario;  
             header("Location: index.php");
         } else {
             $mensaje = implode("<br>", $errores); //El implode transforma el contenido del array ($errores) a texto

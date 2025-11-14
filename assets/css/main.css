@@ -697,15 +697,22 @@ footer {
 }
 
 .foto-principal {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
+    width: 100%; /* Que ocupe el ancho completo de la tarjeta */
+    height: 200px; /* Altura fija para la imagen principal */
+    position: relative; /* Para posicionar el contador de fotos de forma absoluta */
     border-radius: 10px;
+    overflow: hidden; /* Para que la imagen no se salga del borde redondeado */
+}
+
+.foto-principal img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Para que la imagen cubra el contenedor sin distorsionarse */
     cursor: pointer;
     transition: transform 0.3s ease;
 }
 
-.foto-principal:hover {
+.foto-principal:hover img {
     transform: scale(1.02);
 }
 
@@ -1316,3 +1323,4 @@ footer {
         font-size: 0.9rem;
     }
 }
+

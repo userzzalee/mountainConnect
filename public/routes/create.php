@@ -5,7 +5,7 @@
 <?php
     $formerror = [];
     $formi = [];
-    $ruta = $dificultad = $distancia = $desnivel = $duracion = $provincia = $epoca = $descripcion = $niveltec = $nivelfisico = $fotos = "";
+    // $ruta = $dificultad = $distancia = $desnivel = $duracion = $provincia = $epoca = $descripcion = $niveltec = $nivelfisico = $fotos = "";
     $mensaje = "";
     $tipo_mensaje = "";
 
@@ -22,7 +22,6 @@
         $descripcion = $_POST["descripcion"] ?? "";
         $niveltec = $_POST["nivel_tecnico"] ?? 1;
         $nivelfisico = $_POST["nivel_fisico"] ?? 1;
-        $fotos = $_POST["fotos"] ?? "";
 
         //$fotos = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
@@ -79,8 +78,7 @@
 
 
         // --- FOTOS ---
-
-        if (isset($_FILES['fotos'])) {
+    if (isset($_FILES['fotos'])) {
             $fotos = $_FILES['fotos'];
             
             // Información del archivo
@@ -92,15 +90,15 @@
             
         // Validar que no haya errores
             if ($error === UPLOAD_ERR_OK) {
-                // Validar tamaño (ej: 2MB máximo)
+                // Validar tamaño (ej: 2MB máximo)  
                 if ($tamaño <= 2097152) {
                     // Validar tipo
                 $extension = pathinfo($nombre, PATHINFO_EXTENSION);
-                $permitidas = ['jpg', 'jpeg', 'png', 'pdf'];
+                $permitidas = ['jpg', 'jpeg', 'png'];
                 if (in_array(strtolower($extension), $permitidas)) {
                     // Generar nombre único
                     $nuevo_nombre = uniqid() . '.' . $extension;
-                    $destino = 'uploads/' . $nuevo_nombre;
+                    $destino = __DIR__ . '/../../uploads/photo/' . $nuevo_nombre;
                     // Mover archivo
                     if (move_uploaded_file($tmp, $destino)) {
                         echo "Archivo subido correctamente";
@@ -130,7 +128,7 @@
             "descripcion" => $descripcion,
             "niveltec" => $niveltec,
             "nivelfisico" => $nivelfisico,
-            "fotos" => $nuevo_nombre
+            "foto" => $nuevo_nombre
             //clave y lo que guardo en la clave 
             //fotos clave y nuevo nombre lo que guardo
         ];
@@ -171,7 +169,7 @@
                 echo '</div>'
             ?>
 
-            <form id="rutaForm" method="post" class="ruta-form" name="rutaForm">
+            <form id="rutaForm" method="post" class="ruta-form" name="rutaForm" enctype="multipart/form-data">
                 <label>Nombre de la ruta
                     <input type="text" name="nombre_ruta" required>
                 </label>

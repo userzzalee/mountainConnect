@@ -1,5 +1,6 @@
     <?php 
-        include __DIR__ . "/../includes/header.php"; 
+        include __DIR__ ."/../includes/header.php"; 
+        //include __DIR__ ."/../includes/fuction.php";
     ?> <!--Sirve para llamar al archivo header -->
 
     <title>Pagina Montañismo</title>
@@ -13,8 +14,8 @@
             <p class="tagline">La plataforma web que conecta a la comunidad montañera</p>
             <p class="description">Comparte rutas, descubre nuevas aventuras y conecta con otros amantes de la montaña</p>
             <div class="cta-buttons">
-                <a href="../public/routes/create.php" class="btn btn-primary">Formulario</a>
-                <a href="login.php" class="btn btn-secondary">Iniciar Sesión</a>
+                <a href="../public/routes/create.php" class="btn btn-primary">Crear Ruta</a>
+                <a href="../public/routes/list.php" class="btn btn-secondary">Rutas</a>
             </div>
         </div>
     </section>
